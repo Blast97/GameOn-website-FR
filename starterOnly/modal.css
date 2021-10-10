@@ -2,6 +2,7 @@
   --font-default: "DM Sans", Arial, Helvetica, sans-serif;
   --font-slab: var(--font-default);
   --modal-duration: 0.8s;
+  --remerciement-duration: 0.8s;
 }
 * {
   box-sizing: border-box;
@@ -14,7 +15,7 @@ body {
   margin: 0;
   display: flex;
   flex-direction: column;
-  background-image: url("background.png");
+  /*background-image: url("background.png");*/
   font-family: var(--font-default);
   font-size: 18px;
   max-width: 1300px;
@@ -52,10 +53,17 @@ img {
   font-family: Roboto, sans-serif;
 }
 
+/*rajout d'un border le span pour le hover */
+
+.trait{
+  border-bottom: 1px solid rgb(255, 255, 255);
+}
+
 .topnav a:hover {
   background-color: #ff0000;
   color: #ffffff;
   border-radius: 15px;
+  border-bottom: 1px solid rgb(255, 255, 255);
 }
 
 .topnav a.active {
@@ -68,7 +76,7 @@ img {
   display: none;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 829px) {
   .topnav a {display: none;}
   .topnav a.icon {
     float: right;
@@ -76,7 +84,7 @@ img {
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 829px) {
   .topnav.responsive {position: relative;}
   .topnav.responsive .icon {
     position: absolute;
@@ -88,8 +96,8 @@ img {
     display: block;
     text-align: left;
   }
-}
 
+}
 
 
  @media screen and (max-width: 540px) {
@@ -98,12 +106,14 @@ img {
     float: right;
     display: block;
     margin-top: -15px;
-  }
+  } 
+
 } 
 
 main {
-  font-size: 130%;
+  font-size: 135%;
   font-weight: bolder;
+  margin: auto, 0,auto,0;
   color: black;
   padding-top: 0.5vw;
   padding-left: 2vw;
@@ -111,9 +121,10 @@ main {
   margin: 1px 20px 15px;
   border-radius: 2rem;
   text-align: justify;
-
-
+  height: auto;
 }
+
+
 
 .modal-btn {
   font-size: 145%;
@@ -166,12 +177,23 @@ main {
   height: 100%;
   width: 100%;
   overflow: auto;
-  background-color: rgba(26, 39, 156, 0.4);
+  background-color: rgb(255, 255, 255); 
 }
 
+/* mise en transparence de la backgroud*/
+@media screen and (max-width: 540px) {
+.bground{
+  position: fixed;
+  background-color: rgba(255, 255, 255, 0);
+  }
+
+} 
+
 .content {
+
   margin: 5% auto;
   width: 100%;
+  max-height: 100%;
   max-width: 500px;
   animation-name: modalopen;
   animation-duration: var(--modal-duration);
@@ -181,6 +203,18 @@ main {
   position: relative;
   color: #fff;
   padding-top: 10px;
+  overflow-y: auto;
+
+}
+
+@media (max-width: 540px) {
+
+  .content{
+    margin-top: 100px;
+    position: fixed;
+    
+  }
+
 }
 
 .modal-body {
@@ -197,7 +231,7 @@ label {
 }
 input {
   padding: 8px;
-  border: 0.8px solid #ccc;
+  border: 0.8px solid rgb(204, 204, 204);
   outline: none;
 }
 .text-control {
@@ -208,13 +242,15 @@ input {
   font-size: 20px;
   height: 48px;
 }
+/* modification du font-size pour plus de lisibilite lors de l'erreur*/ 
+/*possibilité de mettre un align right pour message erreur sur la droite*/
 .formData[data-error]::after {
   content: attr(data-error);
-  font-size: 0.4em;
+  font-size: 0.5em;
   color: #e54858;
   display: block;
-  margin-top: 7px;
-  margin-bottom: 7px;
+  margin-top: 9px;
+  margin-bottom: 15px;
   text-align: right;
   line-height: 0.3;
   opacity: 0;
@@ -226,12 +262,13 @@ input {
 .formData[data-error-visible="true"] .text-control {
   border: 2px solid #e54858;
 }
-/* 
+
 input[data-error]::after {
     content: attr(data-error);
     font-size: 0.4em;
     color: red;
-} */
+}
+
 .checkbox-label,
 .checkbox2-label {
   position: relative;
@@ -333,6 +370,68 @@ input[data-error]::after {
   cursor: pointer;
   border: 0;
 }
+
+/* creation des elements du modal et bouton de remerciement*/
+
+ .bground-remerciement {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    
+    background:white;
+  }
+
+  @media screen and (max-width: 540px) {
+    .bground-remerciement{
+      position: fixed;
+      background-color: rgba(255, 255, 255, 0);  
+      }
+    
+    } 
+  .content-remerciement {
+    margin: 5% auto;
+    width: 100%;
+    max-width: 500px;
+    height: 720px;
+    background: #232323;
+    border-radius: 10px;
+    position: relative;
+    padding-top: 10px;
+    animation-duration: var(--remerciement-duration);
+  }
+
+  @media (max-width: 540px) {
+    .content-remerciement {
+
+      margin-top: 100px;
+      height:100%;
+      position: relative;
+      height: 92%;
+      position: fixed;
+    }
+    
+  }
+
+  .body-remerciement {
+    height: 88%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    margin: auto 50px;
+
+  }
+  .text-remerciement {
+    color: #c4c4c4;
+    text-align: center;
+  }
+  
+
+
 /* custom select styles */
 .custom-select {
   position: relative;
@@ -361,6 +460,7 @@ input[data-error]::after {
   border-left-color: #f00;
   transform: rotate(-48deg);
   border-radius: 5px 0 5px 0;
+  
 }
 
 /* Point the arrow upwards when the select box is open (active): */
@@ -388,6 +488,7 @@ input[data-error]::after {
   left: 0;
   right: 0;
   z-index: 99;
+  
 }
 
 /* Hide the items when the select box is closed: */
@@ -403,15 +504,17 @@ input[data-error]::after {
 .text-label {
   font-weight: normal;
   font-size: 16px;
+  
 }
 .hero-section {
-  min-height: 93vh;
+  min-height: 60vh;
   border-radius: 10px;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   overflow: hidden;
   box-shadow: 0 2px 7px 2px rgba(0, 0, 0, 0.2);
   margin-bottom: 10px;
+ 
 }
 .hero-content {
   padding: 51px 67px;
@@ -420,7 +523,8 @@ input[data-error]::after {
   color: #fff;
   position: relative;
   text-align: left;
-  min-width: 424px;
+  min-width: 427px;
+  
 }
 .hero-content::after {
   content: "";
@@ -430,21 +534,25 @@ input[data-error]::after {
   position: absolute;
   right: -80px;
   top: 0;
+  
 }
 .hero-content > * {
   position: relative;
   z-index: 1;
+  
 }
 .hero-headline {
-  font-size: 6rem;
+  font-size: 330%;
   font-weight: normal;
   white-space: nowrap;
+  
 }
 .hero-text {
-  width: 146%;
+  width: 175%;
   font-weight: normal;
   margin-top: 57px;
   padding: 0;
+ 
 }
 .btn-signup {
   outline: none;
@@ -462,6 +570,7 @@ input[data-error]::after {
   height: 100%;
   display: block;
   padding: 0;
+
 }
 .copyrights {
   color: #fe142f;
@@ -478,10 +587,12 @@ footer {
   padding-right: 2vw;
   margin: 0 20px;
 }
+
+/*modification du hero text width pour qu'il ne déborde pas*/
 @media screen and (max-width: 800px) {
   .hero-section {
     display: block;
-    box-shadow: unset;
+    box-shadow: unset; 
   }
   .hero-content {
     background: #fff;
@@ -490,17 +601,19 @@ footer {
   }
   .hero-content::after {
     content: unset;
+    
   }
   .hero-content .btn-signup {
     display: none;
   }
   .hero-headline {
-    font-size: 4.5rem;
+    font-size: 4rem;
     white-space: normal;
+    
   }
   .hero-text {
-    width: unset;
-    font-size: 1.5rem;
+    width: 85%;
+    font-size: 1.7rem;
   }
   .hero-img img {
     border-radius: 10px;
@@ -526,4 +639,7 @@ footer {
     opacity: 1;
   }
 }
+
+
+
 

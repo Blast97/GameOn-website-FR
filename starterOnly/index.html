@@ -12,19 +12,23 @@
     />
   </head>
   <body>
-    <div class="topnav" id="myTopnav">
+   <div class="topnav" id="myTopnav">
       <div class="header-logo">
+        <!--reafectation du chemin de l'image-->
       <img alt="logo" src="Logo.png" width="auto" height="auto" />
     </div>
+
+
+    <!--rajout de la class trait sur le span pour obtenir un soulignement lors de l'hover-->
     <div class="main-navbar">
       
-      <a href="#" class="active"><span>Accueil</span></a>
-      <a href="#"><span>Détails de l'évènement</span></a>
-      <a href="#"><span>À propos</span></a>
-      <a href="#"><span>Contact</span></a>
-      <a href="#"><span>Évènements passés</span></a>
+      <a href="#" class=""><span class="trait">Accueil</span></a>
+      <a href="#"class=""><span class="trait">Détails de l'évènement</span></a>
+      <a href="#"class=""><span class="trait">À propos</span></a>
+      <a href="#"class=""><span class="trait">Contact</span></a>
+      <a href="#"class=""><span class="trait">Évènements passés</span></a>
       <a href="javascript:void(0);" class="icon" onclick="editNav()">
-        <i class="fa fa-bars"></i>
+        <em class="fa fa-bars"></em>
       </a>
     </div>
     </div>
@@ -32,6 +36,7 @@
     <main>
       <div class="hero-section">
         <div class="hero-content">
+          <!--modification du font-size pour meilleur visuel-->
           <h1 class="hero-headline">
             Marathon national<br>
             de jeux vidéos
@@ -52,71 +57,84 @@
         </button>
       </div>
 
-      <div class="bground">
+      <div class="bground"  class="main-navbar"  id="myTopnav" >
         <div class="content">
-          <span class="close"></span>
+
+         
+          <span class="close" id="fermeForm"></span>
           <div class="modal-body">
+
             <form
+              id =formulaire
               name="reserve"
               action="index.html"
               method="get"
               onsubmit="return validate();"
             >
+            <!--rajout des data error sur tous les formData pour affichage message d'erreur-->
               <div
-                class="formData">
+                class="formData" data-error="Entrez 2 à 31 caractères. Pas de caractères spéciaux!"  data-error-visible="false">
                 <label>Prénom</label><br>
-                <input
+                <input 
                   class="text-control"
                   type="text"
                   id="first"
-                  name="first"
-                  minlength="2"
+                  name="first" 
+                  maxlength="25"  
                 /><br>
               </div>
               <div
-                class="formData">
+                class="formData" data-error="Entrez 2 à 31 caractères. Pas de caractères spéciaux!" data-error-visible="false">
                 <label>Nom</label><br>
                 <input
                   class="text-control"
                   type="text"
                   id="last"
                   name="last"
+                  maxlength="31"                     
                 /><br>
+
               </div>
               <div
-                class="formData">
+                class="formData" data-error="Entrez une adresse valide" data-error-visible="false">
                 <label>E-mail</label><br>
                 <input
                   class="text-control"
                   type="email"
                   id="email"
-                  name="email"
+                  name="email" 
+                  maxlength="40"
+                  placeholder=" exemple: romain@gmail.com"              
                 /><br>
+
               </div>
               <div
-                class="formData">
+                class="formData"data-error="Entrez votre date d'anniversaire!" data-error-visible="false" >
                 <label>Date de naissance</label><br>
                 <input
                   class="text-control"
                   type="date"
                   id="birthdate"
                   name="birthdate"
+                  
                 /><br>
               </div>
               <div
-                class="formData">
+                class="formData" data-error="Entrez un chiffre entre 0 et 99!" data-error-visible="false">
                 <label>À combien de tournois GameOn avez-vous déjà participé ?</label><br>
-                <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99">
-              </div>
+                <input type="number" class="text-control" id="quantity" name="quantity" >
+            </div>
+              
               <p class="text-label">Quelles villes ?</p>
+              <!-- on rajoute un id sur les radios pour la liaison js html qui n'affectera pas celle de la checkbox-->
               <div
-                class="formData">
+              id="radios" class="formData" data-error="Selectionnez une ville" data-error-visible="false">
                 <input
                   class="checkbox-input"
                   type="radio"
                   id="location1"
                   name="location"
-                  value="New York"
+                  value="New York" 
                 />
                 <label class="checkbox-label" for="location1">
                   <span class="checkbox-icon"></span>
@@ -180,14 +198,14 @@
               </div>
 
               <div
-                class="formData">
+                class="formData" data-error="Acceptez les conditions. Case numero une, obligatoire!" data-error-visible="false">
                 <input
                   class="checkbox-input"
                   type="checkbox"
                   id="checkbox1"
-                  checked
+                 required
                 />
-                <label class="checkbox2-label" for="checkbox1" required>
+                <label class="checkbox2-label"  for="checkbox1" >
                   <span class="checkbox-icon"></span>
                   J'ai lu et accepté les conditions d'utilisation.
                 </label>
@@ -195,20 +213,41 @@
                 <input class="checkbox-input" type="checkbox" id="checkbox2" />
                 <label class="checkbox2-label" for="checkbox2">
                   <span class="checkbox-icon"></span>
-                  Je Je souhaite être prévenu des prochains évènements.
+                   Je souhaite être prévenu des prochains évènements.
                 </label>
                 <br>
               </div>
-              <input
-                class="btn-submit"
+              <input 
                 type="submit"
+                id="inscription"
+                class="btn-submit validForm"
                 class="button"
-                value="C'est parti"
+                value="C'est parti" 
+                      
               />
             </form>
           </div>
         </div>
       </div>
+
+<!--creation modal remerciement pour liaison css et js-->
+      <div class="bground-remerciement">
+        <div class="content-remerciement">
+
+          <!--creation id pour liaison js + ajout d'une class sur btn-submit pour distinction de l'original-->
+          <span class="close" id="croixRemerciement"></span>
+          <div class="body-remerciement">
+            <p class="text-remerciement">Merci !<br/> Votre réservation a bien été reçue.</p>
+          </div>
+          <input type="submit" class="btn-submit fermRemerciement" value="Fermer" />
+        </div>
+      </div>
+
+
+    </main>
+
+
+
     </main>
     <footer>
       <p class="copyrights">
