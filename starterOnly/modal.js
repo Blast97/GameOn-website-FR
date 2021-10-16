@@ -180,25 +180,32 @@ function verifcheckbox1() { console.log(box1.checked);
 document.getElementById("inscription").addEventListener("click", function(formRempli) {  
   
   if(
-  prenomValid() === true &&
-  nomValid() === true &&
-  verifEmail() === true &&
-  verifAnnif() === true &&
-  verifTournois() === true&&
-  validRadio()=== true &&
-  verifcheckbox1() === true
+  verifcheckbox1() === true && prenomValid()   === false || 
+  verifcheckbox1() === true && nomValid()      === false || 
+  verifcheckbox1() === true && verifEmail()    === false ||
+  verifcheckbox1() === true && verifAnnif()    === false || 
+  verifcheckbox1() === true && verifTournois() === false || 
+  verifcheckbox1() === true && validRadio()    === false
   ){
-
-		{
-      corpsRemerc.style.display = "block";
-      modalBg.style.display = "none";
-			formulaire.reset(); 
-       		
-		  }
-       formRempli.preventDefault();
+    formRempli.preventDefault();
 		}
+
+    else if (
+    prenomValid() === true &&
+    nomValid() === true &&
+    verifEmail() === true &&
+    verifAnnif() === true &&
+    verifTournois() === true&&
+    validRadio()=== true &&
+    verifcheckbox1() === true)
+    {
+      {
+        corpsRemerc.style.display = "block";
+        modalBg.style.display = "none";
+        formulaire.reset(); 
+             
+        }
+    }
     
 });
-
-
 
